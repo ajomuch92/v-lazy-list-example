@@ -1,17 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <v-lazy-list :items="items" :loading="loading" @on-load-more="loadRandomNumbers">
+      <template #item="{value}">
+        <p>This is the item => {{value.item}} and this is the index => {{value.index}}</p>
+      </template>
+    </v-lazy-list>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data: () => ({
+    items: [],
+    loading: false,
+  }),
+  created() {
+    this.loadRandomNumbers();
+  },
+  methods: {
+    loadRandomNumbers() {
+      this.loading = true;
+      setTimeout(() => {
+        for(let i = 0; i < 100; i+=1) {
+          this.items.push(this.generateRandomNumber(1, 100))
+        }
+        this.loading = false;
+      }, this.generateRandomNumber(800, 1000))
+    },
+    generateRandomNumber(begin, end) {
+      return Math.floor(Math.random() * end) + begin;
+    }
   }
 }
 </script>
