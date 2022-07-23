@@ -10,7 +10,8 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "v-lazy-list": "1.0.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-var": "^1.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.13",
